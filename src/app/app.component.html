@@ -1,0 +1,74 @@
+<mat-toolbar color="primary">
+  <span>Manga bookmarker</span>
+  <span class="example-spacer"></span>
+  <button mat-raised-button (click)="openAddEditMangaForm()">Add Manga</button>
+</mat-toolbar>
+
+
+<div class="main-body">
+  <mat-form-field appearance="fill" class="wid100">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Example..." #input>
+  </mat-form-field>
+
+  <div class="table-Container">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="card">
+        <th *matHeaderCellDef> </th>
+        <td mat-table *matCellDef="let row">
+
+
+          <mat-card class="example-card">
+            <mat-card-header>
+              <mat-card-title>{{row.name}}</mat-card-title>
+            </mat-card-header>
+
+            <img *ngIf="row.plink" mat-card-image [src]="row.plink">
+            <img *ngIf="!row.plink" mat-card-image
+              src="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg">
+
+
+            <mat-card-content>
+              <mat-card-subtitle>{{row.id}} - {{row.lastReadChapter}} / {{row.totalChapters}} Chapters
+                Read</mat-card-subtitle>
+              <p>{{row.category}}</p>
+            </mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-actions>
+              <button mat-button color="primary">
+                <a [href]="row.link" target="_blank" rel="noopener noreferrer">
+                  <mat-icon>link</mat-icon>
+                </a>
+              </button>
+              <button (click)="openEditMangaForm(row)" mat-button color="primary">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button (click)="deleteManga(row.id)" mat-button color="warn">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-card-actions>
+            <mat-card-footer>
+              <mat-progress-bar mode="determinate"
+                [value]="row.lastReadChapter/row.totalChapters*100"></mat-progress-bar>
+            </mat-card-footer>
+          </mat-card>
+        </td>
+      </ng-container>
+
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td *ngIf="input.value" class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        <td *ngIf="!input.value" class="mat-cell" colspan="4">No data to show !</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+
+</div>

@@ -1,0 +1,59 @@
+<div mat-dialog-title>
+    <h1>Manga</h1>
+</div>
+<form [formGroup]="MangaForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field (cdkAutofill)="true" appearance="outline" floatLabel='auto'>
+                <mat-label>Name</mat-label>
+                <input type="text" matInput placeholder="name...." formControlName="name">
+            </mat-form-field>
+            <mat-form-field appearance="outline" floatLabel='auto'>
+                <mat-label>Category</mat-label>
+                <input type="text" matInput placeholder="Category...." formControlName="category">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="twoRows" appearance="outline">
+                <mat-label>Date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="date">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="twoRows" appearance="outline" floatLabel='auto'>
+                <mat-label>Link</mat-label>
+                <input type="text" matInput placeholder="Link...." formControlName="link">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="twoRows" appearance="outline" floatLabel='auto'>
+                <mat-label>Poster Link</mat-label>
+                <input type="text" matInput placeholder="Link...." formControlName="plink">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-radio-group aria-label="Select an option" formControlName="status">
+                <mat-label>Status</mat-label>
+                <mat-radio-button value="Ongoing">Ongoing</mat-radio-button>
+                <mat-radio-button value="Hiatus">Hiatus</mat-radio-button>
+                <mat-radio-button value="Complete">Complete</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" floatLabel='auto'>
+                <mat-label>Last Read Chapter</mat-label>
+                <input type="number" matInput placeholder="chapter...." formControlName="lastReadChapter">
+            </mat-form-field>
+            <mat-form-field appearance="outline" floatLabel='auto'>
+                <mat-label>Total Chapters</mat-label>
+                <input type="number" matInput placeholder="chapter...." formControlName="totalChapters">
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">{{data ? 'update' : 'save'}}</button>
+    </div>
+</form>

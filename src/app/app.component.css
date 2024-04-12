@@ -1,0 +1,66 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.wid100{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    padding-top: 50px;
+  }
+
+  .main-body{
+    margin: auto;
+    max-width: 95%;
+  }
+
+  .btmGap{
+    gap: 10px;
+  }
+
+
+  a {
+    text-decoration: none;
+  }
+
+
+  mat-card img{
+  width: 360px;
+  height: 500px;
+}
+.example-card {
+  max-width: 360px;
+  height: 700px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+tbody , .mdc-data-table__content{
+  display: flex;
+  flex-direction: row;
+}
+
+.mat-primary {
+  --mat-toolbar-container-background-color: #282828; 
+}
+
+.mdc-card__actions{
+  justify-content: center;
+}
+.mat-mdc-card-header {
+  display: flex;
+  padding: 16px 16px 0;
+  /* margin: auto; */
+}
+.ng-star-inserted {
+  display: ruby-base-container;
+}
+.mat-mdc-row.mdc-data-table__row.cdk-row.ng-star-inserted {
+  margin: 0 48px;
+}
+
+.mat-mdc-card {
+  position: relative;
+  margin: 50px 0 ;
+}
